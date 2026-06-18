@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Blogify</a>
+    <a class="navbar-brand fw-bold" href="/">Blogify</a>
 
     <button
       class="navbar-toggler"
@@ -24,7 +24,15 @@
 
         <% if (locals.user) { %>
           <li class="nav-item">
-            <a class="nav-link" href="/blog/add-new">Add Blog</a>
+            <a class="nav-link" href="/blog/add-new">
+              Add Blog
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/user/profile">
+              My Profile
+            </a>
           </li>
         <% } %>
       </ul>
@@ -35,35 +43,55 @@
         <% if (locals.user) { %>
 
           <li class="nav-item dropdown">
+
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle d-flex align-items-center gap-2"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
             >
-              <%= locals.user.fullName %>
+              <img
+                src="<%= locals.user.profileImageURL %>"
+                width="35"
+                height="35"
+                class="rounded-circle"
+                style="object-fit: cover;"
+              >
+
+              <span><%= locals.user.fullName %></span>
             </a>
 
             <ul class="dropdown-menu dropdown-menu-end">
+
               <li>
-                <a class="dropdown-item" href="#">
-                  Profile
+                <a class="dropdown-item" href="/user/profile">
+                  👤 Profile
                 </a>
               </li>
 
               <li>
-                <a class="dropdown-item" href="/user/logout">
-                  Logout
+                <a class="dropdown-item" href="/user/my-blogs">
+                  📝 My Blogs
                 </a>
               </li>
+
+              <li><hr class="dropdown-divider"></li>
+
+              <li>
+                <a class="dropdown-item text-danger" href="/user/logout">
+                  🚪 Logout
+                </a>
+              </li>
+
             </ul>
+
           </li>
 
         <% } else { %>
 
           <li class="nav-item">
             <a class="nav-link" href="/user/signin">
-              Signin
+              Sign In
             </a>
           </li>
 
@@ -83,7 +111,7 @@
 
 <% if (locals.error) { %>
   <div class="container mt-4">
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger">
       <%= locals.error %>
     </div>
   </div>

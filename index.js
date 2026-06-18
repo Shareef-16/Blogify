@@ -16,8 +16,7 @@ app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie('token'));
-app.use(express.static(path.resolve('./public')))
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', async(req, res)=>{
     const allBlogs=await Blog.find({});
     res.render('home', {
