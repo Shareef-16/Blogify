@@ -9,9 +9,10 @@ const blogSchema=new Schema({
         type:String,
         required:true,
     }, 
-    coverImageURL:{
-        type:String
-    },
+    coverImage:{
+    data: Buffer,
+    contentType: String,
+   },
     createdBy:{
         type: Schema.Types.ObjectId,
         ref :"user",
